@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "./LandingMain.css";
-import { FaDog } from "react-icons/fa";
 
 function LandingMain() {
   return (

@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import "./MainNav.css";
-import { GiHamburgerMenu } from "react-icons/gi";
 
 class MainNav extends Component {
   // static contextType = AuthContext;
