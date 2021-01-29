@@ -10,7 +10,7 @@ export default class HomePage extends React.Component {
       <>
         <div className="bio">
           <h2>Doggy</h2>
-          <img src={doggy} className="doggo"></img>
+          <img src={doggy} alt="doggy" className="doggo"></img>
           <div className="info">
             <div>Age: 2</div>
             <div>Location: 5 miles from you</div>
