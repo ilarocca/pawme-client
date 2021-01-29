@@ -1,0 +1,76 @@
+.tagline {
+  padding-top: 200px;
+  padding-bottom: 0px;
+  border: 10px;
+  background-size: cover;
+  text-align: center;
+}
+
+.get-started:hover {
+  color: #ffffff;
+  background: #c03acc;
+  border-color: #c03acc;
+  transition: all 0.6s ease 0s;
+}
+
+footer {
+  padding: 75px;
+  background: rgb(168, 118, 173);
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.LandingLogo {
+  width: 200px;
+  height: 200px;
+}
+
+.descriptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.start,
+.use,
+.do {
+  min-height: auto;
+  text-align: center;
+  border: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  border-radius: 10px;
+  text-shadow: 0.088rem 0.088rem 0.5625rem rgba(0, 0, 0, 0.188);
+  background-color: rgb(218, 164, 84);
+}
+.icon {
+  color: rgba(253, 255, 141, 0.719);
+}
+
+.text {
+  padding: 10px;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+  color: white;
+  height: auto;
+  width: auto;
+  text-shadow: 0.088rem 0.088rem 0.5625rem rgba(0, 0, 0, 0.188);
+}
+
+@media all and (min-width: 730px) {
+  .tagline-text {
+    font-size: 4em;
+  }
+  .descriptions {
+    display: flex;
+    flex-direction: row;
+    margin-top: 220px;
+    margin-bottom: 220px;
+  }
+  footer {
+    padding: 150px;
+  }
+}

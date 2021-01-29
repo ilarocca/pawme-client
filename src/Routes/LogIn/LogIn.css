@@ -1,0 +1,46 @@
+.login-h3 {
+  text-shadow: 0.088rem 0.088rem 0.5625rem rgba(49, 49, 49, 0.068);
+  color: rgb(0, 0, 0);
+  font-size: 22px;
+}
+.login-text {
+  margin: auto;
+  margin-top: 100px;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+.input {
+  padding: 10px;
+  margin: 10px;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  width: 200px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+.login {
+  display: flex;
+  flex-direction: row;
+}
+.login-submit {
+  margin-top: 8px;
+  padding: 12px;
+  border: none;
+  background-color: #7d2a9e;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625rem 0.125rem 0px,
+    rgba(0, 0, 0, 0.15) 0px 0.0625rem 0.1875rem 0px;
+}
+
+.login-submit:hover {
+  box-shadow: rgba(255, 251, 4, 0.25) 0px 0.0625rem 0.125rem 0px,
+    rgba(0, 0, 0, 0.15) 0px 0.0625rem 0.187;
+}
+
+.login-form.input {
+  padding: 10px;
+}
+
+@media all and (min-width: 700px) {
+}

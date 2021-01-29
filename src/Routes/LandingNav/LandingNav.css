@@ -1,0 +1,56 @@
+div.LandingNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  z-index: 99999;
+}
+
+.LandingTitle {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.signup-login {
+  position: relative;
+  font-family: Avenir, Helvetica, Arial, Sans-serif;
+}
+.signup-link,
+.login-link {
+  text-decoration: none;
+  font-size: 14px;
+  margin: 6px;
+}
+
+.signup-link {
+  padding: 10px;
+  font-weight: 600;
+}
+
+.login-link {
+  color: black;
+  font-weight: 600;
+}
+
+@media all and (min-width: 620px) {
+  div.LandingNav {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+  .LandingTitle {
+    margin: 12px;
+  }
+  .signup-link,
+  .login-link {
+    margin: 18px;
+  }
+}
