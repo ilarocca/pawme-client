@@ -8,8 +8,8 @@ import MainNav from "./Routes/MainNav/MainNav";
 import SignOut from "./Routes/SignOut/SignOut";
 import SignUp from "./Routes/SignUp/SignUp";
 
-class App extends React.Component {
-  renderNavRoutes() {
+function App() {
+  function renderNavRoutes() {
     return (
       <React.Fragment>
         <Route exact path={["/", "/signup", "/login"]} component={LandingNav} />
@@ -20,7 +20,7 @@ class App extends React.Component {
       </React.Fragment>
     );
   }
-  renderMainRoutes() {
+  function renderMainRoutes() {
     return (
       <React.Fragment>
         <Route exact path="/" component={LandingMain} />
@@ -31,15 +31,14 @@ class App extends React.Component {
       </React.Fragment>
     );
   }
-  render() {
-    return (
-      <div className="App">
-        <nav className="app-nav">{this.renderNavRoutes()}</nav>
-        <main className="app-main">{this.renderMainRoutes()}</main>
-        {/* <div>{this.context.error}</div> */}
-      </div>
-    );
-  }
+
+  return (
+    <div className="App">
+      <nav className="app-nav">{renderNavRoutes()}</nav>
+      <main className="app-main">{renderMainRoutes()}</main>
+      {/* <div>{this.context.error}</div> */}
+    </div>
+  );
 }
 
 export default App;
