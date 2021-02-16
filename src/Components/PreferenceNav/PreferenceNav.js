@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import AuthApiService from "../../Services/auth-api-service";
 import AuthContext from "../../Contexts/AuthContext";
 import "./PreferenceNav.css";
 
 export default function PreferenceNav(props) {
-  const { register, handleSubmit, errors } = useForm();
+  const [error, setError] = useState();
+  const { register, handleSubmit } = useForm();
   const context = useContext(AuthContext);
 
   const updatePreferences = async (data) => {
@@ -43,6 +44,7 @@ export default function PreferenceNav(props) {
       context.setCurrentPreferences(res);
     } catch (err) {
       console.log(err);
+      setError((error) => (error = err.message));
     }
     props.handleFetch();
   };
@@ -131,6 +133,7 @@ export default function PreferenceNav(props) {
         <button className="query-btn" onSubmit={updatePreferences}>
           Update
         </button>
+        <div>{error}</div>
       </form>
     </nav>
   );

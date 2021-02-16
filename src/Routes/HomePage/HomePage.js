@@ -6,7 +6,6 @@ import PetFinderApiService from "../../Services/petfinder-api-service";
 import AuthContext from "../../Contexts/AuthContext";
 import PreferenceNav from "../../Components/PreferenceNav/PreferenceNav";
 import Animal from "../../Components/Animal/Animal";
-import QueryNav from "../../Components/QueryNav/QueryNav";
 import TokenService from "../../Services/TokenService";
 import AuthApiService from "../../Services/auth-api-service";
 import AnimalApiService from "../../Services/animal-api-service";
