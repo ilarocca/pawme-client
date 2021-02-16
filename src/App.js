@@ -4,6 +4,7 @@ import LandingMain from "./Routes/LandingMain/LandingMain";
 import LandingNav from "./Routes/LandingNav/LandingNav";
 import LogIn from "./Routes/LogIn/LogIn";
 import HomePage from "./Routes/HomePage/HomePage";
+import PotentialPals from "./Routes/PotentialPals/PotentialPals";
 import MainNav from "./Routes/MainNav/MainNav";
 import SignOut from "./Routes/SignOut/SignOut";
 import SignUp from "./Routes/SignUp/SignUp";
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/" component={LandingMain} />
         <Route path="/login" component={LogIn} />
         <Route path="/homepage" component={HomePage} />
+        <Route path="/potential-pals" component={PotentialPals} />
         <Route path="/signout" component={SignOut} />
         <Route path="/signup" component={SignUp} />
       </React.Fragment>

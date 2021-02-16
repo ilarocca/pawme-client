@@ -11,6 +11,11 @@
   border-radius: 8px;
 }
 
+.query-name {
+  margin-top: 24px;
+  margin-bottom: 5px;
+}
+
 .query-btn {
   margin-top: 18px;
   padding: 6px;

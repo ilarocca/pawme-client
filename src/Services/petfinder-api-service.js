@@ -1,8 +1,7 @@
 require("dotenv").config();
 
-const PetApiService = {
+const PetFinderApiService = {
   fetchAnimals(preferences) {
-    console.log(preferences);
     const apiKey = process.env.REACT_APP_API_KEY;
     const apiSecret = process.env.REACT_APP_API_SECRET;
 
@@ -27,7 +26,12 @@ const PetApiService = {
         //if perferences are null or empty, will return empty string to fetch request
         let queryString = "";
         for (const [key, value] of Object.entries(preferences)) {
-          if (value === "" || value === null || key === "user_id") {
+          if (
+            value === "" ||
+            value === null ||
+            key === "user_id" ||
+            value === false
+          ) {
           } else {
             queryString += key + "=" + value + "&";
           }
@@ -57,4 +61,4 @@ const PetApiService = {
   },
 };
 
-export default PetApiService;
+export default PetFinderApiService;
