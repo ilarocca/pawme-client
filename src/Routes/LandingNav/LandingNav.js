@@ -1,7 +1,25 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthApiService from "../../Services/auth-api-service";
+import AuthContext from "../../Contexts/AuthContext";
 import "./LandingNav.css";
 
-function LandingNav() {
+function LandingNav(props) {
+  const context = useContext(AuthContext);
+
+  async function handleClick(e) {
+    e.preventDefault();
+    const response = await AuthApiService.login("user", "password");
+    context.login(response.authToken);
+    context.setCurrentUser(response.user);
+    const preferences = await AuthApiService.getUserPreferences(
+      response.user.id,
+      response.authToken
+    );
+    delete response.authToken;
+    context.setCurrentPreferences(preferences);
+    props.history.push("/homepage");
+  }
   return (
     <div className="LandingNav">
       <header className="LandingHeader">
@@ -16,9 +34,9 @@ function LandingNav() {
         <Link to="/signup" className="signup-link">
           Sign Up
         </Link>
-        {/* <button className="demo-submit" onClick={handleClick}>
+        <button className="demo-submit" onClick={handleClick}>
           Demo
-        </button> */}
+        </button>
       </nav>
     </div>
   );

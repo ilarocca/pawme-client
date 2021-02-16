@@ -2,3 +2,26 @@
   padding: 12px;
   background-color: rgb(236, 167, 236);
 }
+
+.query-nav {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-width: 15%;
+  margin-left: 20px;
+  /* margin-right: auto; */
+  margin-top: 20px;
+  padding: 10px;
+  background-color: rgb(241, 157, 241);
+  border-radius: 8px;
+}
+
+.query-name {
+  margin-top: 24px;
+  margin-bottom: 5px;
+}
+
+.query-btn {
+  margin-top: 18px;
+  padding: 6px;
+}

@@ -16,7 +16,6 @@ function LogIn(props) {
       const { username, password } = data;
       //login user
       const response = await AuthApiService.login(username, password);
-      // console.log(response);
       context.login(response.authToken);
       //set user in context
       context.setCurrentUser(response.user);
