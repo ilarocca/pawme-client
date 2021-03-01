@@ -1,4 +1,6 @@
 import { useState, useEffect, useContext } from "react";
+import TinderCard from "react-tinder-card";
+import Loader from "react-loader-spinner";
 import "./HomePage.css";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -23,22 +25,45 @@ export default function HomePage() {
     if (state.totalAnimals === 0) {
       handleFetch();
     }
-    console.log(state);
+    console.log(state.currentAnimal);
   });
 
   const handleFetch = async () => {
     const userId = context.currentUser.id;
     const token = TokenService.getAuthToken();
     const preferences = await AuthApiService.getUserPreferences(userId, token);
+    const pals = await UserPetApiService.getUserAnimals(userId);
+
     PetFinderApiService.fetchAnimals(preferences).then((data) => {
+      //filter through fetched animals
+      //return array of animals that ids do not match userAnimals ids
+      const newData = [];
+      newData.animals = data.animals.filter(
+        (animal) =>
+          pals.all.find((pal) => pal.petId === animal.id) === undefined
+      );
+      newData.totalAnimals = newData.animals.length;
+
       setState({
-        animals: data.animals,
-        currentAnimal: data.animals[0],
+        animals: newData.animals,
+        currentAnimal: newData.animals[0],
         currentNumber: 0,
-        totalAnimals: data.pagination,
+        totalAnimals: newData.totalAnimals,
       });
     });
-    console.log(state.currentNumber);
+  };
+
+  const onSwipe = (direction) => {
+    if (direction === "left") {
+      onNotInterestedClick();
+    } else if (direction === "right") {
+      onInterestedClick();
+    }
+    console.log("You swiped: " + direction);
+  };
+
+  const onCardLeftScreen = (myIdentifier) => {
+    console.log(myIdentifier + " left the screen");
   };
 
   const onInterestedClick = async () => {
@@ -49,16 +74,18 @@ export default function HomePage() {
       context.currentUser.id,
       state.currentAnimal.id
     );
-    //move to next animal
-    setState({
-      animals: state.animals,
-      currentAnimal: state.animals[state.currentNumber + 1],
-      currentNumber: (state.currentNumber += 1),
-      totalAnimals: state.totalAnimals,
+    //move to next animal, update currentAnimal and totalAnimals
+    setState((prevState) => {
+      const newAnimals = prevState.animals.filter(
+        (animal) => animal.id !== state.currentAnimal.id
+      );
+      return {
+        animals: newAnimals,
+        currentAnimal: newAnimals[0],
+        currentNumber: 0,
+        totalAnimals: newAnimals.length,
+      };
     });
-
-    console.log(state.currentNumber);
-    console.log(state.currentAnimal);
   };
 
   const onNotInterestedClick = async () => {
@@ -67,18 +94,31 @@ export default function HomePage() {
       context.currentUser.id,
       state.currentAnimal.id
     );
-    setState({
-      animals: state.animals,
-      currentAnimal: state.animals[state.currentNumber + 1],
-      currentNumber: (state.currentNumber += 1),
-      totalAnimals: state.totalAnimals,
+    setState((prevState) => {
+      const newAnimals = prevState.animals.filter(
+        (animal) => animal.id !== state.currentAnimal.id
+      );
+      return {
+        animals: newAnimals,
+        currentAnimal: newAnimals[0],
+        currentNumber: 0,
+        totalAnimals: newAnimals.length,
+      };
     });
   };
 
   if (state.totalAnimals === 0) {
     return (
       <>
-        <div>...finding your potential pals, one sec...</div>{" "}
+        <div className="loading">
+          <Loader
+            type="Hearts"
+            className="hearts"
+            color="#f14848"
+            height={120}
+            width={120}
+          />{" "}
+        </div>
       </>
     );
   }
@@ -86,30 +126,49 @@ export default function HomePage() {
   return (
     <>
       <div className="home-main">
-        <PreferenceNav handleFetch={handleFetch} />
-        {state.totalAnimals.total_count === 0 ? (
-          <div className="nothing-found">try a different combination</div>
+        <div className="home-pref">
+          <PreferenceNav handleFetch={handleFetch} />
+        </div>
+        {state.totalAnimals === 0 ||
+        state.currentNumber === state.totalAnimals ? (
+          <div className="nothing-found">Try a different search</div>
         ) : (
           <div className="animal">
             <div className="swipe">
-              <button className="swipe-btn" onClick={onNotInterestedClick}>
+              <button className="swipe-btn-left" onClick={onNotInterestedClick}>
+                Next
                 <AiOutlineCloseCircle
-                  size={70}
-                  color="red"
+                  size={28}
+                  color="white"
                   className="no"
                 ></AiOutlineCloseCircle>
               </button>
 
-              <Animal currentAnimal={state.currentAnimal} />
-
-              <button className="swipe-btn" onClick={onInterestedClick}>
+              <button className="swipe-btn-right" onClick={onInterestedClick}>
+                Save
                 <AiOutlineCheckCircle
-                  size={70}
-                  color="green"
+                  size={28}
+                  color="white"
                   className="yes"
                 ></AiOutlineCheckCircle>
               </button>
             </div>
+
+            <>
+              {state.animals
+                .slice(0)
+                .reverse()
+                .map((animal, index) => (
+                  <TinderCard
+                    key={index}
+                    onSwipe={(dir) => onSwipe(dir)}
+                    onCardLeftScreen={() => onCardLeftScreen(animal.name)}
+                    preventSwipe={["up", "down"]}
+                  >
+                    <Animal currentAnimal={animal} />
+                  </TinderCard>
+                ))}
+            </>
           </div>
         )}
       </div>

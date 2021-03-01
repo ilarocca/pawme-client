@@ -36,7 +36,6 @@ const PetFinderApiService = {
             queryString += key + "=" + value + "&";
           }
         }
-        console.log(queryString);
 
         return fetch(
           `${proxy}https://api.petfinder.com/v2/animals?limit=100&${queryString}`,

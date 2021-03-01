@@ -23,7 +23,6 @@ const AnimalApiService = {
     };
     //add photo to objecT
     newAnimal.img = image;
-    console.log(newAnimal);
     const res = await fetch(`${config.API_ENDPOINT}/animals/`, {
       method: "POST",
       headers: {

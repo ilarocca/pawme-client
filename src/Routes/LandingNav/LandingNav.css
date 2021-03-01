@@ -2,14 +2,15 @@ div.LandingNav {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  height: 50px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  position: fixed;
+  background: rgba(255, 255, 255, 0);
+  /* height: 70px; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
   padding: 10px;
+
   z-index: 99999;
 }
 
@@ -20,12 +21,13 @@ div.LandingNav {
 }
 .signup-login {
   position: relative;
-  font-family: Avenir, Helvetica, Arial, Sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, Sans-serif; */
 }
 .signup-link,
-.login-link {
+.login-link,
+.demo-link {
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   margin: 6px;
 }
 
@@ -34,9 +36,25 @@ div.LandingNav {
   font-weight: 600;
 }
 
-.login-link {
-  color: black;
+.login-link,
+.signup-link {
+  color: rgb(53, 0, 97);
   font-weight: 600;
+}
+
+.demo-link {
+  background-color: #ffffffc4;
+  color: rgb(53, 0, 97);
+  border: 2px solid #ffffff;
+  border-color: rgb(255, 255, 255);
+  padding: 6px;
+  cursor: pointer;
+}
+
+.demo-link:hover {
+  background-color: rgb(53, 0, 97);
+  color: rgb(255, 255, 255);
+  border: 2px solid #c03acc;
 }
 
 @media all and (min-width: 620px) {

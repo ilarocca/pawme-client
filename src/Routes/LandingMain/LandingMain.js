@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
 import "./LandingMain.css";
+import logo from "./logo.png";
+import why from "./why.jpg";
+import LandingNav from "../../Routes/LandingNav/LandingNav";
+import { GoPencil } from "react-icons/go";
+import { RiHeartAddLine } from "react-icons/ri";
+import { FaDog } from "react-icons/fa";
 
 function LandingMain() {
   return (
     <>
       <header className="tagline">
-        <div>
+        <div className="landing-nav">
+          <LandingNav />
+        </div>
+        <div className="layer">
           <h1 className="tagline-text">Find your new best friend today.</h1>
           <Link to="/signup">
             <button className="get-started">Create Profile</button>
@@ -13,29 +22,45 @@ function LandingMain() {
         </div>
       </header>
 
-      <div className="descriptions">
-        <section className="start">
-          <div className="text">
-            {/* <FaDog size={35}></FaDog> */}
-            <p>Sign up, fill out your bio, and set your preferences.</p>
-          </div>
-        </section>
-        <section className="use">
-          <div className="text">
-            <p>Click right to add to your Potential Pals page.</p>
-          </div>
-        </section>
-        <section className="do">
-          <div className="text">
-            <p>
-              Narrow down your search, contact the adoption center, and go pick
-              up your new buddy!
-            </p>
-          </div>
-        </section>
+      <h2 className="how-title">How It Works</h2>
+      <div className="how">
+        <div className="descriptions">
+          <section className="how-box">
+            <div className="text">
+              <GoPencil size={40} />
+              <p>Sign up and set your preferences.</p>
+            </div>
+          </section>
+
+          <section className="how-box">
+            <div className="text">
+              <RiHeartAddLine size={40} />
+              <p>Add animals to your Saved Pals page.</p>
+            </div>
+          </section>
+
+          <section className="how-box">
+            <div className="text">
+              <FaDog size={40} />
+              <p>Contact the shelter and go pick up your new pal!</p>
+            </div>
+          </section>
+        </div>
       </div>
+
+      <div className="why">
+        <h2 className="why-title">Why Adopt?</h2>
+        <div className="why-body">
+          The number of euthanized animals could be reduced dramatically if more
+          people adopted pets instead of buying them. When you adopt, you save a
+          loving animal by making them part of your family and open up shelter
+          space for another animal who might desperately need it.
+        </div>
+        <img src={why} alt="boy-and-dog" className="why-img" />
+      </div>
+
       <footer className="footer">
-        <div>&#169;Pawme</div>{" "}
+        <img src={logo} />
         {/* <div className="demo-notes">
           <i>
             To use the demo account, select 'demo' icon. To get back to the

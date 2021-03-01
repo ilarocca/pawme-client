@@ -1,10 +1,9 @@
 import doggy from "./doggy.jpg";
+import "./Animal.css";
 
 export default function Animal(props) {
-  console.log(props);
   return (
     <div className="bio">
-      <h2 className="animal-name">{props.currentAnimal.name}</h2>
       <img
         src={
           props.currentAnimal.photos[0] !== undefined
@@ -14,7 +13,10 @@ export default function Animal(props) {
         alt="doggy"
         className="doggo"
       ></img>
+
       <div className="info">
+        <h2 className="animal-name">{props.currentAnimal.name}</h2>
+
         <div>{props.currentAnimal.age}</div>
         <div>{props.currentAnimal.gender}</div>
         <div>{props.currentAnimal.breeds.primary}</div>
@@ -30,7 +32,12 @@ export default function Animal(props) {
 
         <div>
           <b>Description:</b> {props.currentAnimal.description}{" "}
-          <a href={props.currentAnimal.url} target="_blank" rel="noreferrer">
+          <a
+            className="contact"
+            href={props.currentAnimal.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             Contact Shelter
           </a>
         </div>

@@ -24,6 +24,7 @@ const UserPetApiService = {
 
   async addNotInterestedUserAnimal(userId, petId) {
     const userPet = { userId, petId, interested: false };
+    console.log(userPet);
     const res = await fetch(
       `${config.API_ENDPOINT}/users/${userId}/animals/${petId}`,
       {

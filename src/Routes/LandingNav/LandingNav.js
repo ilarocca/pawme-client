@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthApiService from "../../Services/auth-api-service";
 import AuthContext from "../../Contexts/AuthContext";
+import pawme from "./pawme.png";
 import "./LandingNav.css";
 
 function LandingNav(props) {
@@ -24,7 +25,7 @@ function LandingNav(props) {
     <div className="LandingNav">
       <header className="LandingHeader">
         <Link to="/">
-          <button>Pawme</button>
+          <img src={pawme} alt="pawme" className="LandingTitle" />
         </Link>
       </header>
       <nav className="signup-login">
@@ -34,7 +35,7 @@ function LandingNav(props) {
         <Link to="/signup" className="signup-link">
           Sign Up
         </Link>
-        <button className="demo-submit" onClick={handleClick}>
+        <button className="demo-link" onClick={handleClick}>
           Demo
         </button>
       </nav>

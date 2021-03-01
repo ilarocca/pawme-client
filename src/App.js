@@ -6,18 +6,14 @@ import LogIn from "./Routes/LogIn/LogIn";
 import HomePage from "./Routes/HomePage/HomePage";
 import PotentialPals from "./Routes/PotentialPals/PotentialPals";
 import MainNav from "./Routes/MainNav/MainNav";
-import SignOut from "./Routes/SignOut/SignOut";
 import SignUp from "./Routes/SignUp/SignUp";
 
 function App() {
   function renderNavRoutes() {
     return (
       <React.Fragment>
-        <Route exact path={["/", "/signup", "/login"]} component={LandingNav} />
-        <Route
-          path={["/homepage", "/potential-pals", "/signout"]}
-          component={MainNav}
-        />
+        <Route exact path={["/signup", "/login"]} component={LandingNav} />
+        <Route path={["/homepage", "/potential-pals"]} component={MainNav} />
       </React.Fragment>
     );
   }
@@ -28,7 +24,6 @@ function App() {
         <Route path="/login" component={LogIn} />
         <Route path="/homepage" component={HomePage} />
         <Route path="/potential-pals" component={PotentialPals} />
-        <Route path="/signout" component={SignOut} />
         <Route path="/signup" component={SignUp} />
       </React.Fragment>
     );
