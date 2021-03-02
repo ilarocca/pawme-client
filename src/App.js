@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Route } from "react-router-dom";
 import LandingMain from "./Routes/LandingMain/LandingMain";
 import LandingNav from "./Routes/LandingNav/LandingNav";

@@ -1,4 +1,4 @@
-import { Component, useContext } from "react";
+import { useContext } from "react";
 import AuthContext from "../../Contexts/AuthContext";
 import { Link } from "react-router-dom";
 import "./MainNav.css";

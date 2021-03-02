@@ -60,7 +60,7 @@ function LandingMain() {
       </div>
 
       <footer className="footer">
-        <img src={logo} />
+        <img src={logo} alt="pawme-logo" />
         {/* <div className="demo-notes">
           <i>
             To use the demo account, select 'demo' icon. To get back to the
