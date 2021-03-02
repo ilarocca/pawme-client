@@ -7,12 +7,12 @@ import { GoPencil } from "react-icons/go";
 import { RiHeartAddLine } from "react-icons/ri";
 import { FaDog } from "react-icons/fa";
 
-function LandingMain() {
+function LandingMain(props) {
   return (
     <>
       <header className="tagline">
         <div className="landing-nav">
-          <LandingNav />
+          <LandingNav props={props} />
         </div>
         <div className="layer">
           <h1 className="tagline-text">Find your new best friend today.</h1>

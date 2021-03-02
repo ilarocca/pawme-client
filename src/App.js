@@ -1,6 +1,5 @@
 import React from "react";
-import { useRef } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import LandingMain from "./Routes/LandingMain/LandingMain";
 import LandingNav from "./Routes/LandingNav/LandingNav";
 import LogIn from "./Routes/LogIn/LogIn";
@@ -10,16 +9,15 @@ import MainNav from "./Routes/MainNav/MainNav";
 import SignUp from "./Routes/SignUp/SignUp";
 
 function App() {
-  const handleFetch = useRef;
-
   function renderNavRoutes() {
     return (
       <React.Fragment>
-        <Route exact path={["/signup", "/login"]} component={LandingNav} />
         <Route
-          path={["/potential-pals"]}
-          render={(props) => <MainNav handleFetch={handleFetch} {...props} />}
+          exact
+          path={["/signup", "/login"]}
+          render={(props) => <LandingNav {...props} />}
         />
+        <Route path={["/potential-pals"]} render={MainNav} />
       </React.Fragment>
     );
   }
@@ -28,10 +26,7 @@ function App() {
       <React.Fragment>
         <Route exact path="/" component={LandingMain} />
         <Route path="/login" component={LogIn} />
-        <Route
-          path="/homepage"
-          render={(props) => <HomePage ref={handleFetch} {...props} />}
-        />
+        <Route path="/homepage" component={HomePage} />
         <Route path="/potential-pals" component={PotentialPals} />
         <Route path="/signup" component={SignUp} />
       </React.Fragment>
@@ -46,4 +41,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

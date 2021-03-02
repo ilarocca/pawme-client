@@ -19,7 +19,8 @@ function LandingNav(props) {
     );
     delete response.authToken;
     context.setCurrentPreferences(preferences);
-    props.history.push("/homepage");
+
+    props.props.history.push("/homepage");
   }
   return (
     <div className="LandingNav">
