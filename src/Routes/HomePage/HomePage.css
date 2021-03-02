@@ -80,9 +80,6 @@
   font-size: 22px;
 }
 
-.swipe-btn-right {
-  /* margin-left: 277px; */
-}
 .swipe-btn-left:hover {
   color: #ffffff;
   background: #f14848;
@@ -108,8 +105,10 @@
 
 .nothing-found {
   text-align: center;
-  padding-left: 100px;
+  padding: 18px;
   padding-top: 100px;
+  color: white;
+  font-size: 20px;
 }
 
 .home-pref {

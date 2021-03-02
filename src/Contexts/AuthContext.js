@@ -43,6 +43,7 @@ export class AuthProvider extends Component {
     } else {
       this.setState({ mounted: true });
     }
+    console.log(this.state.userPreferences);
   };
 
   login = (token) => {

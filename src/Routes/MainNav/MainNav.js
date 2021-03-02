@@ -6,14 +6,7 @@ import pawme from "../LandingNav/pawme.png";
 import PreferenceNav from "../../Components/PreferenceNav/PreferenceNav";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-function MainNav() {
-  // static contextType = AuthContext;
-
-  // state = {
-  //   username: this.context.currentUser.username,
-  //   clicked: false,
-  // };
-
+function MainNav(props) {
   //toggle mobile nav bar
   const handleClick = (e) => {
     e.preventDefault();
@@ -28,7 +21,10 @@ function MainNav() {
     context.logout();
   };
 
-  // const username = this.state.username;
+  const handleFetch = () => {
+    props.handleFetch();
+  };
+
   return (
     <nav className="navbar">
       <span
@@ -56,7 +52,7 @@ function MainNav() {
           </Link>
         </li>
         <div className="nav-pref">
-          <PreferenceNav />
+          <PreferenceNav handleFetch={handleFetch} />
         </div>
       </ul>
     </nav>

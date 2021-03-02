@@ -6,6 +6,7 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import PetFinderApiService from "../../Services/petfinder-api-service";
 import AuthContext from "../../Contexts/AuthContext";
+import MainNav from "../../Routes/MainNav/MainNav";
 import PreferenceNav from "../../Components/PreferenceNav/PreferenceNav";
 import Animal from "../../Components/Animal/Animal";
 import TokenService from "../../Services/TokenService";
@@ -19,13 +20,13 @@ export default function HomePage() {
     currentAnimal: {},
     currentNumber: 0,
     totalAnimals: 0,
+    error: null,
   });
   const context = useContext(AuthContext);
   useEffect(() => {
     if (state.totalAnimals === 0) {
       handleFetch();
     }
-    console.log(state.currentAnimal);
   });
 
   const handleFetch = async () => {
@@ -44,12 +45,19 @@ export default function HomePage() {
       );
       newData.totalAnimals = newData.animals.length;
 
-      setState({
-        animals: newData.animals,
-        currentAnimal: newData.animals[0],
-        currentNumber: 0,
-        totalAnimals: newData.totalAnimals,
-      });
+      if (newData.totalAnimals === 0) {
+        setState({
+          totalAnimals: null,
+          error: "No results were found, please try a different combination.",
+        });
+      } else {
+        setState({
+          animals: newData.animals,
+          currentAnimal: newData.animals[0],
+          currentNumber: 0,
+          totalAnimals: newData.totalAnimals,
+        });
+      }
     });
   };
 
@@ -123,15 +131,18 @@ export default function HomePage() {
     );
   }
 
+  //renders main nav here to have access to handleFetch for mobile preference
   return (
     <>
+      <MainNav handleFetch={handleFetch} />
       <div className="home-main">
         <div className="home-pref">
           <PreferenceNav handleFetch={handleFetch} />
         </div>
         {state.totalAnimals === 0 ||
+        state.totalAnimals === null ||
         state.currentNumber === state.totalAnimals ? (
-          <div className="nothing-found">Try a different search</div>
+          <div className="nothing-found">{state.error}</div>
         ) : (
           <div className="animal">
             <div className="swipe">

@@ -1,21 +1,21 @@
 .info div {
   margin: 1.7px;
+  max-width: 360px;
 }
 
 .contact {
-  /* text-decoration: none; */
   font-weight: bold;
   color: rgb(0, 47, 255);
-  /* text-transform: uppercase; */
-  /* border-style: solid;
-  border: px;
-  border-color: #287ec7;
-  background-color: white; */
   margin: auto;
-
   padding: 0.5px;
 }
 
 .contact:hover {
   color: rgb(186, 4, 192);
+}
+
+@media screen and (min-width: 760px) {
+  .info div {
+    max-width: 450px;
+  }
 }

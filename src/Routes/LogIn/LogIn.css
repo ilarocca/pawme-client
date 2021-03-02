@@ -12,8 +12,7 @@
 .input {
   padding: 10px;
   margin: 10px;
-  border: 0;
-  border-bottom: 1px solid #eee;
+  border: 2px solid rgb(179, 177, 177);
   width: 200px;
   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 }

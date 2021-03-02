@@ -41,6 +41,11 @@ function PotentialPals() {
   return (
     <div className="background">
       <ul className="pal-list">
+        {state.animals.length === 0 ? (
+          <div className="add-pals">Go add some pals!</div>
+        ) : (
+          <></>
+        )}
         {sortedAnimals.map((animal) => {
           return (
             <li className="pal-list-item">

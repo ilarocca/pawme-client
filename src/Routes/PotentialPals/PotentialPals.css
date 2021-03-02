@@ -9,5 +9,13 @@
   align-items: flex-start;
   background-image: url("pals-background.jpg");
   background-size: cover;
-  background-color: purple;
+  height: 100vh;
+}
+
+.add-pals {
+  text-align: center;
+  padding: 18px;
+  padding-top: 100px;
+  color: white;
+  font-size: 20px;
 }
