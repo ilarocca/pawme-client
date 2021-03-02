@@ -17,7 +17,7 @@ function App() {
           path={["/signup", "/login"]}
           render={(props) => <LandingNav {...props} />}
         />
-        <Route path={["/potential-pals"]} render={MainNav} />
+        <Route path={["/potential-pals"]} component={MainNav} />
       </React.Fragment>
     );
   }
