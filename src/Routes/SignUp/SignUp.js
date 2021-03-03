@@ -13,7 +13,6 @@ export default function SignUp(props) {
     const newUser = { name, username, email, password };
     try {
       const savedUser = await AuthApiService.createUser(newUser);
-      // console.log(savedUser);
       context.login(savedUser.authToken);
       context.setCurrentUser(savedUser.user);
       // get preferences
@@ -25,9 +24,7 @@ export default function SignUp(props) {
       //set preferences in context
       context.setCurrentPreferences(preferences);
       props.history.push("/homepage");
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

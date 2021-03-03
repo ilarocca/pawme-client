@@ -33,11 +33,10 @@ const PetFinderApiService = {
         }
       })
       .then((resJson) => {
-        console.log(resJson);
         return resJson;
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   },
 
@@ -50,10 +49,8 @@ const PetFinderApiService = {
       let locationRes = await this.fetchCoordinates(preferences).then((res) => {
         return res;
       });
-      console.log(locationRes);
       newLocation = locationRes[0].lat + "," + locationRes[0].lon;
     }
-    console.log(newLocation);
     preferences.location = newLocation;
 
     const newAnimals = fetch("https://api.petfinder.com/v2/oauth2/token", {
@@ -105,7 +102,7 @@ const PetFinderApiService = {
         return data;
       })
       .catch((err) => {
-        console.log("something went wrong", err);
+        return err;
       });
     return newAnimals;
   },

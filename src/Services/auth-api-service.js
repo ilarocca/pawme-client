@@ -66,7 +66,6 @@ const AuthApiService = {
   async createUserPreferences(newPreferences) {
     const currentUser = await this.getCurrentUser();
     const authToken = TokenService.getAuthToken();
-    // console.log(newPreferences);
     const res = await fetch(
       `${config.API_ENDPOINT}/users/${currentUser.user.id}/preferences`,
       {

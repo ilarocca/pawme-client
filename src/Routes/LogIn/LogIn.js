@@ -29,7 +29,6 @@ function LogIn(props) {
       context.setCurrentPreferences(preferences);
       props.history.push("/homepage");
     } catch (err) {
-      console.log(err);
       setError((error) => (error = err.message));
     }
   };

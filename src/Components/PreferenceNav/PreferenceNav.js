@@ -42,7 +42,6 @@ export default function PreferenceNav(props) {
       const res = await AuthApiService.createUserPreferences(newPreferences);
       context.setCurrentPreferences(res);
     } catch (err) {
-      console.log(err);
       setError((error) => (error = err.message));
     }
     props.handleFetch();
@@ -55,84 +54,97 @@ export default function PreferenceNav(props) {
         id="js-menu"
         onSubmit={handleSubmit(updatePreferences)}
       >
-        <label htmlFor="animal-type">Type:</label>
-        <select
-          name="type"
-          id="js-animal-type"
-          ref={register}
-          defaultValue={context.userPreferences.type}
-        >
-          <option value="dog">Dogs</option>
-          <option value="cat">Cats</option>
-          <option value="rabbit">Rabbits</option>
-          <option value="small-furry">Small & Furry</option>
-          <option value="horse">Horses</option>
-          <option value="bird">Birds</option>
-          <option value="scales-fins-other">Scales, Fins, & Other</option>
-          <option value="barnyard">Barnyard</option>
-        </select>
+        <div className="top-pref">
+          <label>
+            Type:
+            <select
+              name="type"
+              ref={register}
+              defaultValue={context.userPreferences.type}
+            >
+              <option value="dog">Dogs</option>
+              <option value="cat">Cats</option>
+              <option value="rabbit">Rabbits</option>
+              <option value="small-furry">Small & Furry</option>
+              <option value="horse">Horses</option>
+              <option value="bird">Birds</option>
+              <option value="scales-fins-other">Scales, Fins, & Other</option>
+              <option value="barnyard">Barnyard</option>
+            </select>
+          </label>
 
-        <label htmlFor="distance">Distance:</label>
-        <select
-          name="distance"
-          ref={register}
-          defaultValue={context.userPreferences.distance}
-        >
-          <option value="">Any</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="250">250</option>
-          <option value="500">500</option>
-        </select>
+          <label>
+            Distance:
+            <select
+              name="distance"
+              ref={register}
+              defaultValue={context.userPreferences.distance}
+            >
+              <option value="">Any</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="250">250</option>
+              <option value="500">500</option>
+            </select>
+          </label>
 
-        <label>Location:</label>
-        <input
-          name="location"
-          placeholder="city, state"
-          ref={register}
-          defaultValue={context.userPreferences.location}
-        />
+          <label>
+            Location:
+            <input
+              name="location"
+              placeholder="city, state"
+              ref={register}
+              defaultValue={context.userPreferences.location}
+            />
+          </label>
 
-        <label htmlFor="size">Size</label>
-        <select
-          name="size"
-          ref={register}
-          defaultValue={context.userPreferences.size}
-        >
-          <option value="">Any</option>
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-          <option value="xlarge">X-Large</option>
-        </select>
+          <label>
+            Size
+            <select
+              name="size"
+              ref={register}
+              defaultValue={context.userPreferences.size}
+            >
+              <option value="">Any</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+              <option value="xlarge">X-Large</option>
+            </select>
+          </label>
 
-        <label htmlFor="gender">Gender</label>
-        <select
-          name="gender"
-          ref={register}
-          defaultValue={context.userPreferences.gender}
-        >
-          <option value="">Any</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
+          <label>
+            Gender
+            <select
+              name="gender"
+              ref={register}
+              defaultValue={context.userPreferences.gender}
+            >
+              <option value="">Any</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </label>
 
-        <label htmlFor="age">Age</label>
-        <select
-          name="age"
-          ref={register}
-          defaultValue={context.userPreferences.age}
-        >
-          <option value="">Any</option>
-          <option value="baby">Baby</option>
-          <option value="young">Young</option>
-          <option value="adult">Adult</option>
-          <option value="senior">Senior</option>
-        </select>
+          <label>
+            Age
+            <select
+              name="age"
+              ref={register}
+              defaultValue={context.userPreferences.age}
+            >
+              <option value="">Any</option>
+              <option value="baby">Baby</option>
+              <option value="young">Young</option>
+              <option value="adult">Adult</option>
+              <option value="senior">Senior</option>
+            </select>
+          </label>
+        </div>
 
         <h4 className="query-name">Good With</h4>
-        <label htmlFor="goodWithChildren">
+        <label>
           <input
             type="checkbox"
             name="goodWithChildren"
@@ -141,7 +153,7 @@ export default function PreferenceNav(props) {
           />
           Children
         </label>
-        <label htmlFor="goodWithDogs">
+        <label>
           <input
             type="checkbox"
             name="goodWithDogs"
@@ -150,7 +162,7 @@ export default function PreferenceNav(props) {
           />
           Dogs
         </label>
-        <label htmlFor="goodWithCats">
+        <label>
           <input
             type="checkbox"
             name="goodWithCats"
@@ -161,7 +173,7 @@ export default function PreferenceNav(props) {
         </label>
 
         <h4 className="careAndBehavior">Care And Behavior</h4>
-        <label htmlFor="houseTrained">
+        <label>
           <input
             type="checkbox"
             name="houseTrained"
@@ -170,7 +182,7 @@ export default function PreferenceNav(props) {
           />
           House Trained
         </label>
-        <label htmlFor="declawed">
+        <label>
           <input
             type="checkbox"
             name="declawed"
@@ -179,7 +191,7 @@ export default function PreferenceNav(props) {
           />
           Declawed
         </label>
-        <label htmlFor="specialNeeds">
+        <label>
           <input
             type="checkbox"
             name="specialNeeds"

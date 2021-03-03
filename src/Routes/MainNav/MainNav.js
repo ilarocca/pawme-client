@@ -42,7 +42,7 @@ function MainNav(props) {
 
       <ul className="main-nav" id="js-menu">
         <li>
-          <Link to={`/potential-pals`} className="nav-links">
+          <Link to={`/saved-pals`} className="nav-links">
             Saved Pals
           </Link>
         </li>

@@ -1,6 +1,7 @@
 .info div {
   margin: 1.7px;
   max-width: 360px;
+  word-wrap: break-word;
 }
 
 .contact {

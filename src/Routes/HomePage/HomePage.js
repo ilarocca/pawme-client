@@ -21,8 +21,10 @@ export default function HomePage() {
     currentNumber: 0,
     totalAnimals: 0,
     error: null,
+    savingPal: false,
   });
   const context = useContext(AuthContext);
+
   useEffect(() => {
     if (state.totalAnimals === 0) {
       handleFetch();
@@ -34,6 +36,14 @@ export default function HomePage() {
     const token = TokenService.getAuthToken();
     const preferences = await AuthApiService.getUserPreferences(userId, token);
     const pals = await UserPetApiService.getUserAnimals(userId);
+
+    if (preferences.distance !== "" && preferences.location === "") {
+      setState({
+        totalAnimals: null,
+        error: "Please enter a location when entering a distance",
+      });
+      return;
+    }
 
     PetFinderApiService.fetchAnimals(preferences).then((data) => {
       //filter through fetched animals
@@ -56,25 +66,34 @@ export default function HomePage() {
           currentAnimal: newData.animals[0],
           currentNumber: 0,
           totalAnimals: newData.totalAnimals,
+          savingPal: false,
         });
       }
     });
   };
 
   const onSwipe = (direction) => {
+    if (state.savingPal === true) {
+      console.log("true");
+      return;
+    }
     if (direction === "left") {
       onNotInterestedClick();
     } else if (direction === "right") {
       onInterestedClick();
     }
-    console.log("You swiped: " + direction);
-  };
-
-  const onCardLeftScreen = (myIdentifier) => {
-    console.log(myIdentifier + " left the screen");
   };
 
   const onInterestedClick = async () => {
+    console.log(state);
+    //prevents mutliple clicks, resulting in saving same animal multiple times
+    setState({
+      animals: state.animals,
+      currentAnimal: state.currentAnimal,
+      currentNumber: state.currentNumber,
+      totalAnimals: state.totalAnimals,
+      savingPal: true,
+    });
     // add to pets
     await AnimalApiService.addAnimal(state.currentAnimal);
     // add to userPets as interested
@@ -82,6 +101,7 @@ export default function HomePage() {
       context.currentUser.id,
       state.currentAnimal.id
     );
+
     //move to next animal, update currentAnimal and totalAnimals
     setState((prevState) => {
       const newAnimals = prevState.animals.filter(
@@ -92,11 +112,20 @@ export default function HomePage() {
         currentAnimal: newAnimals[0],
         currentNumber: 0,
         totalAnimals: newAnimals.length,
+        savingPal: false,
       };
     });
   };
 
   const onNotInterestedClick = async () => {
+    //prevents mutliple clicks, resulting in saving same animal multiple times
+    setState({
+      animals: state.animals,
+      currentAnimal: state.currentAnimal,
+      currentNumber: state.currentNumber,
+      totalAnimals: state.totalAnimals,
+      savingPal: true,
+    });
     //add to userPets as notInterested
     await UserPetApiService.addNotInterestedUserAnimal(
       context.currentUser.id,
@@ -111,6 +140,7 @@ export default function HomePage() {
         currentAnimal: newAnimals[0],
         currentNumber: 0,
         totalAnimals: newAnimals.length,
+        savingPal: false,
       };
     });
   };
@@ -146,7 +176,11 @@ export default function HomePage() {
         ) : (
           <div className="animal">
             <div className="swipe">
-              <button className="swipe-btn-left" onClick={onNotInterestedClick}>
+              <button
+                className="swipe-btn-left"
+                disabled={state.savingPal === true}
+                onClick={onNotInterestedClick}
+              >
                 Next
                 <AiOutlineCloseCircle
                   size={28}
@@ -155,7 +189,11 @@ export default function HomePage() {
                 ></AiOutlineCloseCircle>
               </button>
 
-              <button className="swipe-btn-right" onClick={onInterestedClick}>
+              <button
+                className="swipe-btn-right"
+                disabled={state.savingPal === true}
+                onClick={onInterestedClick}
+              >
                 Save
                 <AiOutlineCheckCircle
                   size={28}
@@ -173,8 +211,8 @@ export default function HomePage() {
                   <TinderCard
                     key={index}
                     onSwipe={(dir) => onSwipe(dir)}
-                    onCardLeftScreen={() => onCardLeftScreen(animal.name)}
                     preventSwipe={["up", "down"]}
+                    flickOnSwipe={true}
                   >
                     <Animal currentAnimal={animal} />
                   </TinderCard>

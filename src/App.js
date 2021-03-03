@@ -1,34 +1,36 @@
 import React from "react";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import LandingMain from "./Routes/LandingMain/LandingMain";
 import LandingNav from "./Routes/LandingNav/LandingNav";
 import LogIn from "./Routes/LogIn/LogIn";
 import HomePage from "./Routes/HomePage/HomePage";
-import PotentialPals from "./Routes/PotentialPals/PotentialPals";
+import SavedPals from "./Routes/SavedPals/SavedPals";
 import MainNav from "./Routes/MainNav/MainNav";
 import SignUp from "./Routes/SignUp/SignUp";
+import PublicOnlyRoute from "./Components/Utils/PublicOnlyRoute";
+import PrivateRoute from "./Components/Utils/PrivateRoute";
 
 function App() {
   function renderNavRoutes() {
     return (
       <React.Fragment>
-        <Route
+        <PublicOnlyRoute
           exact
           path={["/signup", "/login"]}
-          render={(props) => <LandingNav {...props} />}
+          component={LandingNav}
         />
-        <Route path={["/potential-pals"]} component={MainNav} />
+        <PrivateRoute path={["/saved-pals"]} component={MainNav} />
       </React.Fragment>
     );
   }
   function renderMainRoutes() {
     return (
       <React.Fragment>
-        <Route exact path="/" component={LandingMain} />
-        <Route path="/login" component={LogIn} />
-        <Route path="/homepage" component={HomePage} />
-        <Route path="/potential-pals" component={PotentialPals} />
-        <Route path="/signup" component={SignUp} />
+        <PublicOnlyRoute exact path="/" component={LandingMain} />
+        <PublicOnlyRoute path="/login" component={LogIn} />
+        <PublicOnlyRoute path="/signup" component={SignUp} />
+        <PrivateRoute path="/homepage" component={HomePage} />
+        <PrivateRoute path="/saved-pals" component={SavedPals} />
       </React.Fragment>
     );
   }
