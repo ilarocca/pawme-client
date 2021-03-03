@@ -18,7 +18,7 @@ Finding the perfect pet can be overwhelming. Pawme leaves it up to chance and in
 
 ## In Action
 
-![] (pawme-gif.gif)
+![](https://giphy.com/gifs/2nG2DUnSjmmpBtLtYx/html5)
 
 ## Technology
 
