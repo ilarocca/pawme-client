@@ -38,7 +38,6 @@ function SavedPals() {
   const sortedAnimals = state.animals.sort((a, b) =>
     a.dateCreated < b.dateCreated ? 1 : -1
   );
-  console.log(sortedAnimals);
   return (
     <div className="background">
       <ul className="pal-list">

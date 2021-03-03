@@ -74,7 +74,6 @@ export default function HomePage() {
 
   const onSwipe = (direction) => {
     if (state.savingPal === true) {
-      console.log("true");
       return;
     }
     if (direction === "left") {
@@ -85,7 +84,6 @@ export default function HomePage() {
   };
 
   const onInterestedClick = async () => {
-    console.log(state);
     //prevents mutliple clicks, resulting in saving same animal multiple times
     setState({
       animals: state.animals,
